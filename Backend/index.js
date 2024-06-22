@@ -83,3 +83,7 @@ app.put("/completed",function(req, res){
         })
     })
 })
+
+app.listen(3000, function(){
+    console.log("App is running on localhost:3000")
+})
