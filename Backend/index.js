@@ -1,6 +1,7 @@
 // basic express boilerplate code
 const express = require("express");
 const { createTodo } = require("./types");
+const { updateTodo} = require("./types");
 const app = express();
 
 app.use(express.json());
