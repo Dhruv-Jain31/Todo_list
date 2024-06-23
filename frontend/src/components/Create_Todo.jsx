@@ -13,6 +13,15 @@ export function Create_Todo(){
         }}
         type = "text" placeholder = "description"></input><br></br>
 
-        <button>Add a todo</button>
+        <button style = {{
+            padding: 10,
+            margin: 10
+        }} onClick = {function(){
+            fetch("http://localhost:3000/todos")
+            .then(async function(response){
+                const json = await response.json();
+                alert("To do added successfully")
+            })
+        }}>Add a todo</button>
     </div>
 }

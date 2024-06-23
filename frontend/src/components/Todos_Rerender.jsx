@@ -32,9 +32,9 @@ Todos_Rerender.propTypes = {
 //The values are PropTypes validators that specify the expected type and requirements for each property.
 
         PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            description: PropTypes.string.isRequired,
-            completed: PropTypes.bool.isRequired
+            title: PropTypes.string,
+            description: PropTypes.string,
+            completed: PropTypes.bool
         })
-    ).isRequired
+    )
 };
