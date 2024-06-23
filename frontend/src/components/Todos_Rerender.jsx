@@ -19,7 +19,16 @@ export function Todos_Rerender ({todos}) {
                 <b>{todo.title}</b>
                 <h3>Description: </h3>
                 <p>{todo.description}</p><br></br>
-                <button>{todo.completed == true ? "Completed" : "Mark as Complete"}</button>
+                <button style = {{
+                    padding : '8px 16px',
+                    margin : '8px',
+                    backgroundColor: todo.completed == true ? 'green' : 'lightblue',
+                    color: 'white',
+                    border: 'none',
+                    cursor: 'pointer'
+                }}>
+                    {todo.completed == true ? "Completed ✔" : "Mark as Complete"}
+                    </button>
             </div>
         })}
     </div>
