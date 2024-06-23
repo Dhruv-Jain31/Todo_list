@@ -26,17 +26,28 @@ export function Create_Todo(){
             padding: 10,
             margin: 10
         }} onClick = {function(){
-            fetch("http://localhost:3000/todos"),{
+            fetch("http://localhost:3000/todos",{
                 method: "POST",
-                body:{
-                    title: "title",
-                    description: "description",
+                body: JSON.stringify({
+                    title: "title",  // sending the global state title and description
+                    description: "description"
+                }),
+                headers: {
+                    "ContentType" : "applicaton/json"
                 }
-            }
-            .then(async function(response){
-                const json = await response.json();
-                alert("To do added successfully")
             })
+            .then(function(response){
+                return response.json(); // this is again returns a promise
+            })
+            .then(function(res){
+                alert("Todo added successfully")
+                return res.json();
+            })
+            .catch(function(error){
+                alert("Error in adding todo")
+                console.error("Error adding the todo", error);
+            })
+
         }}>Add a todo</button>
     </div>
 }
