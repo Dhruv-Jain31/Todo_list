@@ -3,9 +3,15 @@ const express = require("express");
 const { createTodo } = require("./types");
 const { updateTodo} = require("./types");
 const { todo } = require("./db");
+const cors = require("cors")
 const app = express();
 
+
 app.use(express.json());
+// when we silently try to hit this b.e from a f.e that is not hosted on it's port. it shows a cors error
+app.use(cors({
+    origin: "http://localhost:5173"  // this allows f.e hosted on this port to silently hit this b.e
+}))
 
 app.post("/todo", function(req, res) {
     const createPayload = req.body;
