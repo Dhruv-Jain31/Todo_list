@@ -15,8 +15,10 @@ export function Todos_Rerender ({todos}) {
     return <div>
         {todos.map(function(todo, index) { // iterates over all the todos and map it to div
             return <div key = { index }>
-                <h1>{todo.title}</h1>
-                <h2>{todo.description}</h2>
+                <h2>Title: </h2>
+                <b>{todo.title}</b>
+                <h3>Description: </h3>
+                <p>{todo.description}</p><br></br>
                 <button>{todo.completed == true ? "Completed" : "Mark as Complete"}</button>
             </div>
         })}

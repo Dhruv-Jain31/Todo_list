@@ -1,10 +1,11 @@
-
+import { useState } from "react";
 export function Create_Todo(){
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("")
+
     return <div>
-        <input style = {{
+        <input id="title" style = {{
             padding: 10,
             margin: 10
         }}
@@ -13,7 +14,8 @@ export function Create_Todo(){
             setTitle(value);
         }}></input><br></br>
 
-        <input style = {{
+
+        <input id="description" style = {{
             padding: 10,
             margin: 10
         }}
@@ -26,26 +28,25 @@ export function Create_Todo(){
             padding: 10,
             margin: 10
         }} onClick = {function(){
-            fetch("http://localhost:3000/todos",{
+            // app use checks whether the inputs are json and if headers are json it accepts it. else ignore
+            fetch("http://localhost:3000/todo",{
                 method: "POST",
                 body: JSON.stringify({
-                    title: "title",  // sending the global state title and description
-                    description: "description"
+                    title: title,  // sending the global state title and description
+                    description: description
                 }),
                 headers: {
-                    "ContentType" : "applicaton/json"
+                    "Content-Type" : "application/json"
                 }
             })
-            .then(function(response){
-                return response.json(); // this is again returns a promise
-            })
-            .then(function(res){
+            .then(async function(res){
+                const json = await res.json();
                 alert("Todo added successfully")
-                return res.json();
+                setTitle('');
+                setDescription('');
             })
             .catch(function(error){
-                alert("Error in adding todo")
-                console.error("Error adding the todo", error);
+                console.error("Error in adding the todo: ", error);
             })
 
         }}>Add a todo</button>
